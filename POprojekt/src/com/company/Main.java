@@ -116,6 +116,7 @@ public class Main {
 
         }
     }
+
     public static void removeItem() {
         System.out.println("Type item's id: ");
         int id = scan.nextInt();
@@ -123,8 +124,7 @@ public class Main {
         Item item = Base.getItem(id);
         if (item != null) {
             Base.removeItem(item);
-        }
-        else {
+        } else {
             System.out.println("There is no item with this id");
         }
     }
@@ -139,20 +139,23 @@ public class Main {
         scan.nextLine();
         switch (select) {
             case 1:
-                for(int i = 0; i < )
-                Base.getItem(id);
+                int id = scan.nextInt();
+                scan.nextLine();
+                Base.showItemId(id);
                 break;
-
+/*
             case 2:
-                Base.getItemType();
+                Base.showItemType();
                 break;
-
+*/
             case 3:
-                Base.getItemTitle(title);
+                String title = scan.nextLine();
+                Base.showItemTitle(title);
                 break;
 
             case 4:
-                Base.getItemAuthor(author);
+                String author = scan.nextLine();
+                Base.showItemAuthor(author);
                 break;
         }
     }

@@ -23,8 +23,7 @@ public class ItemDAO {
             this.items.add(item);
             System.out.println("Item added");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Item with this id already exists");
             return false;
         }
@@ -41,10 +40,9 @@ public class ItemDAO {
     public void showItems() {
         if (items.size() == 0) {
             System.out.println("There are no items in your base");
-        }
-        else {
-            for (int i = 0; i < items.size(); i++) {
-                items.get(i).getInfo();
+        } else {
+            for (Item item : this.items) {
+                item.getInfo();
             }
         }
     }
@@ -57,47 +55,47 @@ public class ItemDAO {
     }
 
     public Item getItem(int id) {
-        if(findItem(id) != null)
+        if (findItem(id) != null)
             return findItem(id);
         return null;
-
     }
 
-    public void getItemTitle(String title) {
+    public void showItemId(int id) {
         if (items.size() == 0) {
             System.out.println("There are no items in your base");
         }
         else {
-            for (int i = 0; i < items.size(); i++) {
-                if(items.get(i).getTitle() == title)
-                    items.get(i).getInfo();
-            }
-        }
-
-    }
-
-    public void getItemAuthor(String author) {
-        if (items.size() == 0) {
-            System.out.println("There are no items in your base");
-        }
-        else {
-            for (int i = 0; i < items.size(); i++) {
-                if(items.get(i).getAuthor() == author)
-                    items.get(i).getInfo();
+            for (Item item : this.items) {
+                if(item.getId() == id)
+                    item.getInfo();
             }
         }
     }
 
-    public Item getItemType(String type) {
+    public void showItemTitle(String title) {
         if (items.size() == 0) {
             System.out.println("There are no items in your base");
+        } else {
+            for (Item item : this.items) {
+                if (item.getTitle().equals(title))
+                    item.getInfo();
+            }
         }
-        else {
+    }
+
+    public void showItemAuthor(String author) {
+        if (items.size() == 0) {
+            System.out.println("There are no items in your base");
+        } else {
             for (int i = 0; i < items.size(); i++) {
-                if(items.get(i).getClass().equals())
+                if (items.get(i).getAuthor().equals(author))
                     items.get(i).getInfo();
             }
         }
     }
 
+    public void showItemType() {
+
+
+    }
 }

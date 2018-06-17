@@ -24,13 +24,13 @@ public class Album extends Item {
     }
 
     public boolean addSong(String title, double duration) {
-            if (findSong(title) == null) {
-                this.songs.add(new AudioFile(title, duration));
-                System.out.println("Song added");
-                return true;
-            }
-            return false;
+        if (findSong(title) == null) {
+            this.songs.add(new AudioFile(title, duration));
+            System.out.println("Song added");
+            return true;
         }
+        return false;
+    }
 
     private AudioFile findSong(String title) {
         for (AudioFile checkedSong : this.songs) {
