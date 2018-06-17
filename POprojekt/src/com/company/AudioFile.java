@@ -17,4 +17,5 @@ public class AudioFile {
     public double getDuration() {
         return duration;
     }
+
 }

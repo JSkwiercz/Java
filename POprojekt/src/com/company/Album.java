@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public class Album extends Item implements Iinfo {
+public class Album extends Item {
 
     private ArrayList<AudioFile> songs;
 
@@ -13,9 +13,9 @@ public class Album extends Item implements Iinfo {
 
     @Override
     public void getInfo() {
-        System.out.println("Title: " + getTitle() +
+        System.out.println("Type: CD-Album\nTitle: " + getTitle() +
                 "\nAuthor: " + getAuthor() +
-                "\nSongs: " + songs.size());
+                "\nSongs: " + songs.size() + "\n");
     }
 
     @Override

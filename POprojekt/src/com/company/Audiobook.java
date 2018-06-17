@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public class Audiobook extends Item implements Iinfo {
+public class Audiobook extends Item {
 
     private double duration;
     private ArrayList<AudioFile> chapters;
@@ -15,9 +15,9 @@ public class Audiobook extends Item implements Iinfo {
 
     @Override
     public void getInfo() {
-        System.out.println("Title: " + getTitle() +
+        System.out.println("Type: Audiobook\nTitle: " + getTitle() +
                 "\nAuthor: " + getAuthor() +
-                "\nChapters: " + chapters.size());
+                "\nChapters: " + chapters.size() + "\n");
     }
 
     @Override

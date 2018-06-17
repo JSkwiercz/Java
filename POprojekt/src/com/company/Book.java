@@ -1,6 +1,6 @@
 package com.company;
 
-public class Book extends Item implements Iinfo {
+public class Book extends Item {
 
     private int pages;
     private String cover;
@@ -13,10 +13,10 @@ public class Book extends Item implements Iinfo {
 
     @Override
     public void getInfo() {
-        System.out.println("Title: " + getTitle() +
+        System.out.println("Type: Book\nTitle: " + getTitle() +
                 "\nAuthor: " + getAuthor() +
                 "\nPages: " + this.pages +
-                "\nCover: " + this.cover);
+                "\nCover: " + this.cover + "\n");
 
     }
 

@@ -1,6 +1,6 @@
 package com.company;
 
-public class Ebook extends Item implements Iinfo {
+public class Ebook extends Item {
 
     private int pages;
     String format;
@@ -13,10 +13,10 @@ public class Ebook extends Item implements Iinfo {
 
     @Override
     public void getInfo() {
-        System.out.println("Title: " + getTitle() +
+        System.out.println("Type: Ebook\nTitle: " + getTitle() +
                 "\nAuthor: " + getAuthor() +
                 "\nPages: " + this.pages +
-                "\nFormat: " + this.format);
+                "\nFormat: " + this.format + "\n");
     }
 
     @Override

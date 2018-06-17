@@ -1,6 +1,6 @@
 package com.company;
 
-public class Item {
+public class Item implements Iinfo {
     private int id;
     private String title;
     private String author;
@@ -22,5 +22,15 @@ public class Item {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void getInfo() {
+
+    }
+
+    @Override
+    public void findPlace() {
+
     }
 }
