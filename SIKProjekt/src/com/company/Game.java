@@ -1,44 +1,49 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
-    public Player players[] = new Player[6];
+    public List<Player> players = new ArrayList<>();
     private Field[][] board = new Field[5][5];
 
-    public Game() {
-        for (int i = 0; i < players.length; i++) {
-            players[i] = new Player();
+    public void addPlayer(String login, int id) {
+        if (players.size() < 6) {
+            Player p = new Player(login, id);
+            players.add(p);
         }
     }
 
-    public void addPlayer(String login) {
-        int i = 1;
-        players[i].setId(i);
-        players[i].setLogin(login);
-    }
-
     public int getIdByLogin(String login) {
-        for (int i = 1; i <= 6; i++) {
-            if(players[i].getLogin().equals(login))
-                return players[i].getId();
-        } return 0;
+        for (Player p : players) {
+            if (p.getLogin().equals(login)) {
+                return p.getId();
+            }
+        }
+        return 0;
     }
 
-    public int getIdFromField(int i, int j) {
-        for(int x = 0; x < 5; x++) {
+    public int getIdFromField(String a1, String b1) {
+        int i = Integer.parseInt(a1);
+        int j = Integer.parseInt(b1);
+        for (int x = 0; x < 5; x++) {
             for (int y = 0; y < 5; y++) {
-                if(x == i && y == j)
+                if (x == i && y == j)
                     return board[x][y].getId();
             }
-        } return 0;
+        }
+        return 0;
     }
 
-    public boolean playerIsEliminated(String login){
-        for(int i = 1; i <= 6; i++) {
-            if(players[i].getLogin().equals(login))
-                return players[i].isEliminated();
-        } return true;
+    public boolean playerIsEliminated(String login) {
+        for (Player p : players) {
+            if (p.getLogin().equals(login))
+                return p.isEliminated();
+        }
+        return true;
     }
+
 
     public void setBoard() {
         //creating fields
@@ -52,8 +57,8 @@ public class Game {
         for (int i = 1; i <= 5; i++) {
             int j = 0;
             while (j < 2) {
-                int x = (int) (Math.random() * 4);
-                int y = (int) (Math.random() * 4);
+                int x = (int) (Math.random() * 5);
+                int y = (int) (Math.random() * 5);
                 if (board[x][y].getId() == 0) {
                     board[x][y].setId(i);
                     board[x][y].setDices(2);
@@ -64,8 +69,8 @@ public class Game {
         //random inactive fields
         int i = 0;
         while (i < 5) {
-            int x = (int) (Math.random() * 4);
-            int y = (int) (Math.random() * 4);
+            int x = (int) (Math.random() * 5);
+            int y = (int) (Math.random() * 5);
             if (board[x][y].getId() == 0) {
                 board[x][y].setDices((int) (Math.random() * 5) + 1);
                 i++;
@@ -102,15 +107,15 @@ public class Game {
             winner = attacked.getId();
         }
         attacking.setDices(1);
-        result = "WYNIK" + attacking.getId() + " " + rolls[0].length + " ";
+        result = ("WYNIK" + attacking.getId() + " " + rolls[0].length + " ");
         for (int i = 0; i < rolls[0].length; i++) {
             result += (rolls[0][i] + " ");
         }
         result += (attacked.getId() + " " + rolls[1].length + " ");
         for (int i = 0; i < rolls[1].length; i++) {
-            result +=(rolls[1][i] + " ");
+            result += (rolls[1][i] + " ");
         }
-        result += "\n";
+        result += (winner + "\n");
         return result;
     }
 
@@ -144,34 +149,39 @@ public class Game {
         for (int x = 0; x < 5; x++) {
             for (int y = 0; y < 5; y++) {
                 if (board[x][y].getId() > 0) {
-                    idTable[board[x][y].getId() - 1]++;
+                    if (idTable[board[x][y].getId() - 1] < 8) {
+                        idTable[board[x][y].getId() - 1]++;
+                    }
                 }
             }
         }
     }
 
-    public void giveInfo() {
-        for (int x = 0; x < 5; x++) {
-            for (int y = 0; y < 5; y++) {
-                System.out.println("PLANSZA" + x + " " + y + " " + board[x][y].getId() + " " + board[x][y].getDices());
-            }
-        }
+    public String giveInfo(int x, int y) {
+        return ("PLANSZA " + (x + 1) + " " + (y + 1) + " " + board[x][y].getId() + " " + board[x][y].getDices());
+
     }
 
-    public void isOut() {
-        int[] idTable = new int[5];
+    public void isOut(int id) {
+        int fields = 0;
 
         for (int x = 0; x < 5; x++) {
             for (int y = 0; y < 5; y++) {
-                if (board[x][y].getId() != 0) {
-                    idTable[board[x][y].getId() - 1]++;
+                if (board[x][y].getId() == id) {
+                    fields++;
                 }
             }
         }
-        for(int x: idTable) {
-            if (idTable[x] == 0) {
-                System.out.println(x);
-            }
+        if (fields == 0) {
+            players.get(id - 1).setEliminated(true);
+        }
+    }
+
+    public boolean ifGameReady() {
+        if (players.size() == 2) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

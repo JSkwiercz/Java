@@ -7,14 +7,12 @@ public class Player {
     private int score;
     private int finalScore;
 
-    public Player() {
+    public Player(String login, int id) {
+        this.login = login;
+        this.id = id;
         this.isEliminated = false;
         this.score = 0;
         this.finalScore = 0;
-    }
-
-    public Player(String login) {
-        this.login = login;
     }
 
     public int getId() {
